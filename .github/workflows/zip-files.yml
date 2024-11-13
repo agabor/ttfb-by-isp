@@ -14,18 +14,16 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Install dependencies
-      run: |
-        sudo apt-get install -y zip
-        npm install -g uglify-js
+      run: npm install -g uglify-js
 
     - name: Minify JavaScript
       run: uglifyjs ttfb-logger.js -o ttfb-logger.js
 
-    - name: Zip files
-      run: mkdir ttfb-by-isp ; cp ttfb-by-isp.php ttfb-by-isp; cp ttfb-logger.js ttfb-by-isp ; zip -r ttfb-by-isp-${{ github.ref_name }}.zip ttfb-by-isp
+    - name: Create Plugin directory
+      run: mkdir ttfb-by-isp ; cp ttfb-by-isp.php ttfb-by-isp; cp ttfb-logger.js ttfb-by-isp
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
         name: ttfb-by-isp-${{ github.ref_name }}
-        path: ttfb-by-isp-${{ github.ref_name }}.zip
+        path: ttfb-by-isp-${{ github.ref_name }}

@@ -17,8 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 action: 'log_ttfb',
                 ttfb: ttfb,
                 url: currentUrl,
-		userType: userType,
-                nonce: ttfbLogger.nonce
+                userType: userType
             })
         })
         .then(response => response.json())

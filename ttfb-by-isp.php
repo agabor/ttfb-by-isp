@@ -2,7 +2,7 @@
 /**
  * Plugin Name: TTFB by ISP
  * Description: Logs Time to First Byte (TTFB), ISP, URL, and User Agent information.
- * Version: 1.0.3
+ * Version: 1.0.4
  * Author: Gabor Angyal
  * Author URI: https://codesharp.dev
  */
