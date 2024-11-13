@@ -58,8 +58,7 @@ add_action('wp_enqueue_scripts', 'ttfb_logger_enqueue_script');
 function ttfb_logger_enqueue_script() {
     wp_enqueue_script('ttfb-logger', plugin_dir_url(__FILE__) . 'ttfb-logger.js', [], '1.3', true);
     wp_localize_script('ttfb-logger', 'ttfbLogger', [
-        'ajaxUrl' => admin_url('admin-ajax.php'),
-        'nonce' => wp_create_nonce('ttfb-logger-nonce')
+        'ajaxUrl' => admin_url('admin-ajax.php')
     ]);
 }
 
@@ -68,8 +67,6 @@ add_action('wp_ajax_nopriv_log_ttfb', 'ttfb_logger_log_ttfb');
 add_action('wp_ajax_log_ttfb', 'ttfb_logger_log_ttfb');
 
 function ttfb_logger_log_ttfb() {
-    check_ajax_referer('ttfb-logger-nonce', 'nonce');
-
     $ttfb = isset($_POST['ttfb']) ? floatval($_POST['ttfb']) : null;
     $url = isset($_POST['url']) ? sanitize_text_field($_POST['url']) : '';
     $user_type = isset($_POST['userType']) ? sanitize_text_field($_POST['userType']) : '';
