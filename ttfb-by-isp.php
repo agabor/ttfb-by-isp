@@ -2,7 +2,7 @@
 /**
  * Plugin Name: TTFB by ISP
  * Description: Logs Time to First Byte (TTFB), ISP, URL, and User Agent information.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: Gabor Angyal
  * Author URI: https://codesharp.dev
  */
@@ -50,7 +50,7 @@ function ttfb_logger_delete_table() {
     }
 }
 
-register_deactivation_hook(__FILE__, 'wp_web_vitals_delete_table');
+register_deactivation_hook(__FILE__, 'ttfb_logger_delete_table');
 
 // Enqueue the script that calculates and sends TTFB
 add_action('wp_enqueue_scripts', 'ttfb_logger_enqueue_script');
