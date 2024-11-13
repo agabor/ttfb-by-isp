@@ -1,0 +1,31 @@
+name: Zip Files
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  zip-files:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get install -y zip
+        npm install -g uglify-js
+
+    - name: Minify JavaScript
+      run: uglifyjs ttfb-logger.js -o ttfb-logger.js
+
+    - name: Zip files
+      run: zip ttfb-by-isp-${{ github.ref_name }}.zip ttfb-by-isp.php ttfb-logger.js
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ttfb-by-isp-${{ github.ref_name }}
+        path: ttfb-by-isp-${{ github.ref_name }}.zip
