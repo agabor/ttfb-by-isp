@@ -22,7 +22,7 @@ jobs:
       run: uglifyjs ttfb-logger.js -o ttfb-logger.js
 
     - name: Zip files
-      run: zip ttfb-by-isp-${{ github.ref_name }}.zip ttfb-by-isp.php ttfb-logger.js
+      run: mkdir ttfb-by-isp ; cp ttfb-by-isp.php ttfb-by-isp; cp ttfb-logger.js ttfb-by-isp ; zip -r ttfb-by-isp-${{ github.ref_name }}.zip ttfb-by-isp
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
